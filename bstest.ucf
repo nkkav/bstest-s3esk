@@ -1,0 +1,18 @@
+NET "sldsw<3>"   LOC = "N17";
+NET "sldsw<2>"   LOC = "H18";
+NET "sldsw<1>"   LOC = "L14";
+NET "sldsw<0>"   LOC = "L13";
+
+NET "button<3>"  LOC = "V4";   # NORTH
+NET "button<2>"  LOC = "H13";  # EAST
+NET "button<1>"  LOC = "D18";  # WEST 
+NET "button<0>"  LOC = "K17";  # SOUTH
+
+NET "led<7>"     LOC = "F9"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "led<6>"     LOC = "E9"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "led<5>"     LOC = "D11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "led<4>"     LOC = "C11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "led<3>"     LOC = "F11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "led<2>"     LOC = "E11" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "led<1>"     LOC = "E12" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
+NET "led<0>"     LOC = "F12" | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 8;
