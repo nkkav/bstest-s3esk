@@ -11,11 +11,16 @@
 +-------------------+----------------------------------------------------------+
 | **Website**       | http://www.nkavvadias.com                                |
 +-------------------+----------------------------------------------------------+
-| **Release Date**  | 10 July 2016                                             |
+| **Release Date**  | 09 August 2016                                           |
 +-------------------+----------------------------------------------------------+
-| **Version**       | 1.0.2                                                    |
+| **Version**       | 1.0.3                                                    |
 +-------------------+----------------------------------------------------------+
 | **Rev. history**  |                                                          |
++-------------------+----------------------------------------------------------+
+|        **v1.0.3** | 2016-08-09                                               |
+|                   |                                                          |
+|                   | Update file names, add GHDL simulation scripts. Add      |
+|                   | std_logic_textio package as user's package               |
 +-------------------+----------------------------------------------------------+
 |        **v1.0.2** | 2016-07-10                                               |
 |                   |                                                          |
@@ -64,11 +69,20 @@ The bstest distribution includes the following files:
 | bstest-syn.sh         | Bash shell script for synthesizing the ``bstest``    |
 |                       | design with Xilinx ISE.                              |
 +-----------------------+------------------------------------------------------+
+| clean.sh              | A bash script for cleaning simulation artifacts.     |
++-----------------------+------------------------------------------------------+
+| ghdl.mk               | Makefile for VHDL simulation with GHDL.              |
++-----------------------+------------------------------------------------------+
+| ghdl.sh               | Bash shell script for running the simulation with    |
+|                       | GHDL.                                                |
++-----------------------+------------------------------------------------------+
 | impact_s3esk.bat      | Windows Batch file for automatically invoking Xilinx |
 |                       | Impact in order to download the generated bitstream  |
 |                       | to the target hardware.                              |
 +-----------------------+------------------------------------------------------+
 | rst2docs.sh           | Bash script for generating the HTML and PDF versions.|
++-----------------------+------------------------------------------------------+
+| std_logic_textio.vhd  | Synopsys' std_logic_textio package.                  |
 +-----------------------+------------------------------------------------------+
 | xst.mk                | Standard Makefile for command-line usage of ISE.     |
 +-----------------------+------------------------------------------------------+
@@ -86,7 +100,28 @@ to specify the following for adapting to the user's setup:
 - ``arch``: specific FPGA architecture (device family) to be used for synthesis
 - ``part``: specific FPGA part (device) to be used for synthesis
 
-3.1. Running the synthesis script
+3.1. Running the simulation script
+----------------------------------
+
+This step assumes that the GHDL executable is in the user's ``$PATH``, e.g., by 
+using:
+
+| ``$ export PATH=/path/to/ghld/bin:$PATH``
+
+Then the simulation shell script can be run from a UNIX/Linux/Cygwin command line:
+
+| ``$ ./ghdl.sh``
+
+This will produce a text file named ``bstest_results.txt`` with the values 
+of current time whenever a clock event occurs (as integer) and the signal 
+``ramp``.
+
+To clean up simulation artifacts, including the generated diagnostics file, use 
+the ``clean.sh`` script:
+
+| ``$ ./clean.sh``
+
+3.2. Running the synthesis script
 ---------------------------------
 
 For running the Xilinx ISE synthesis tool, generating FPGA configuration 
@@ -148,8 +183,13 @@ the target FPGA device:
 4. Prerequisites
 ================
 
-- [suggested] MinGW environment on Windows 7 (64-bit).
+- [suggested] Linux (e.g., Ubuntu 16.04 LTS) or MinGW environment on Windows 7 
+  (64-bit).
+
+- [suggested] GHDL simulator: http://ghdl.free.fr
+  The 0.33 version on Linux Ubuntu 16.04 LTS was used.
 
 - Xilinx ISE (free ISE webpack is available from the Xilinx website): 
   http://www.xilinx.com.
   The 14.6 version on Windows 7/64-bit is known to work.
+
