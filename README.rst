@@ -192,4 +192,3 @@ the target FPGA device:
 - Xilinx ISE (free ISE webpack is available from the Xilinx website): 
   http://www.xilinx.com.
   The 14.6 version on Windows 7/64-bit is known to work.
-

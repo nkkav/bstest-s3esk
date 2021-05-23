@@ -1,8 +1,8 @@
 # Filename: ghdl.mk
-# Author: Nikolaos Kavvadias (C) 2016
+# Author: Nikolaos Kavvadias (C) 2016-2021
 
 GHDL=ghdl
-GHDLFLAGS=-fexplicit --ieee=standard --workdir=work
+GHDLFLAGS=--ieee=standard --workdir=work
 GHDLRUNFLAGS=--stop-time=1000000ns
 
 all : run
@@ -11,15 +11,14 @@ elab : force
 	$(GHDL) -c $(GHDLFLAGS) -e bstest_tb
 
 run : force
-	./bstest.ghdl $(GHDLRUNFLAGS)
+	$(GHDL) --elab-run $(GHDLFLAGS) bstest_tb $(GHDLRUNFLAGS)
 
 init : force
 	mkdir work
-	$(GHDL) -i $(GHDLFLAGS) std_logic_textio.vhd
-	$(GHDL) -i $(GHDLFLAGS) bstest.vhd
-	$(GHDL) -i $(GHDLFLAGS) bstest_tb.vhd
-	$(GHDL) -m $(GHDLFLAGS) -o bstest.ghdl bstest_tb
+	$(GHDL) -a $(GHDLFLAGS) std_logic_textio.vhd
+	$(GHDL) -a $(GHDLFLAGS) bstest.vhd
+	$(GHDL) -a $(GHDLFLAGS) bstest_tb.vhd
 force : 
 
 clean :
-	rm -rf *.o *.ghdl work
+	rm -rf *.o *.ghdl work *_results.txt

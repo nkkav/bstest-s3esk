@@ -24,8 +24,6 @@ architecture tb_arch of bstest_tb is
   signal sldsw  : std_logic_vector(3 downto 0);
   signal button : std_logic_vector(3 downto 0);
   signal led    : std_logic_vector(7 downto 0);
-  -- Profiling signals
-  signal ncycles : integer := 0;
   -- Constant declarations
   constant CLK_PERIOD : time := 20 ns;
   -- Declare results file
@@ -39,13 +37,6 @@ begin
       button => button,
       led => led
     );
-
-  PROFILING: process(clk)
-  begin
-    if (rising_edge(clk)) then
-      ncycles <= ncycles + 1;
-    end if;
-  end process PROFILING;
 
   DATA_STIM: process
     variable count_hi : integer range 0 to 15 := 0;
